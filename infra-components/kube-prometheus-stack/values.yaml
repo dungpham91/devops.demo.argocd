@@ -357,7 +357,7 @@ alertmanager:
     - name: 'null'
     - name: slack
       slack_configs:
-        - channel: "devopslite-notification"
+        - channel: "#alerts"
           send_resolved: true
           actions:
             - type: button
@@ -3116,24 +3116,6 @@ prometheusOperator:
 ##
 prometheus:
   enabled: true
-  ingress:
-    enabled: true
-    ingressClassName: alb
-    annotations:
-      alb.ingress.kubernetes.io/scheme: internet-facing
-      alb.ingress.kubernetes.io/target-type: instance
-      alb.ingress.kubernetes.io/group.name: ingress
-      alb.ingress.kubernetes.io/group.order: "6"
-      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-southeast-1:952429021322:certificate/eb93366d-2d7b-499c-b6f2-9b06243cad5d
-      alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06
-      alb.ingress.kubernetes.io/listen-ports: |
-        [{"HTTP": 80}, {"HTTPS": 443}]
-      alb.ingress.kubernetes.io/actions.redirect-to-https: >
-        {"Type": "redirect", "RedirectConfig": {"Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}
-    hosts:
-      - prometheus.dev.devopslite.com
-    paths: /
-    pathType: Prefix
 
   ## Toggle prometheus into agent mode
   ## Note many of features described below (e.g. rules, query, alerting, remote read, thanos) will not work in agent mode.
