@@ -3116,13 +3116,12 @@ prometheusOperator:
 ##
 prometheus:
   enabled: true
-
   ingress:
     enabled: true
     ingressClassName: alb
     annotations:
       alb.ingress.kubernetes.io/scheme: internet-facing
-      alb.ingress.kubernetes.io/target-type: ip
+      alb.ingress.kubernetes.io/target-type: instance
       alb.ingress.kubernetes.io/group.name: ingress
       alb.ingress.kubernetes.io/group.order: "6"
       alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-southeast-1:952429021322:certificate/eb93366d-2d7b-499c-b6f2-9b06243cad5d
@@ -3446,6 +3445,9 @@ prometheus:
   #   auth: |
   #     foo:$apr1$OFG3Xybp$ckL0FHDAkoXYIlH9.cysT0
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
+
+  ingress:
+    enabled: false
 
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
