@@ -26,11 +26,11 @@ serviceAccount:
 secretStore:
   region: ap-southeast-1
   create: true
-  name: secretstore-postgresql-dev
+  name: secretstore-postgresql
 
 externalSecret:
   create: true
-  name: externalsecret-postgresql-dev
+  name: externalsecret-postgresql
 
 secret:
   name: postgresql

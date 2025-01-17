@@ -18,22 +18,9 @@ spec:
       containers:
         - name: postgresql
           image: "{{ .Values.postgresql.image.repository }}:{{ .Values.postgresql.image.tag }}"
-          env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgresql-secret
-                  key: username
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgresql-secret
-                  key: password
-            - name: POSTGRES_DB
-              valueFrom:
-                secretKeyRef:
-                  name: postgresql-secret
-                  key: dbname
+          envFrom:
+            - secretRef:
+                name: {{ .Values.secret.name }}
           ports:
             - containerPort: 5432
           volumeMounts:
