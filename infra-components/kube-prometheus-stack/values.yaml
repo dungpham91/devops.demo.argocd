@@ -347,11 +347,11 @@ alertmanager:
           receiver: "null"
         - match_re:
             severity: info
-          receiver: webhook
+          receiver: slack
           continue: true
         - match_re:
             severity: warning|critical
-          receiver: webhook
+          receiver: slack
           continue: true
     receivers:
     - name: 'null'
