@@ -3,7 +3,7 @@ environment: dev
 
 image:
   repository: 952429021322.dkr.ecr.ap-southeast-1.amazonaws.com/devopslite-fe
-  tag: v0.0.4
+  tag: v0.0.5
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
