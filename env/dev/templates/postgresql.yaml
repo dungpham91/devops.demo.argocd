@@ -11,9 +11,6 @@ spec:
     repoURL: https://charts.bitnami.com/bitnami
     chart: postgresql
     targetRevision: latest
-  destination:
-    cluster: in-cluster
-    namespace: postgres
     helm:
       values: |
         persistence:
@@ -32,6 +29,9 @@ spec:
           limits:
             memory: "2Gi"
             cpu: "1"
+  destination:
+    name: in-cluster
+    namespace: postgres
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
