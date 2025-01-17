@@ -44,9 +44,9 @@ service:
 
 ingress:
   enabled: true
-  backendProtocol: HTTP
-  certificateArn: arn:aws:acm:ap-southeast-1:952429021322:certificate/eb93366d-2d7b-499c-b6f2-9b06243cad5d
-  groupName: ingress
+  backendProtocol: "HTTP"
+  certificateArn: "arn:aws:acm:ap-southeast-1:952429021322:certificate/eb93366d-2d7b-499c-b6f2-9b06243cad5d"
+  groupName: "ingress"
   groupOrder: "3"
   hosts:
     - host: api.dev.devopslite.com
