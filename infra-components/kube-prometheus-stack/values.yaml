@@ -3187,7 +3187,7 @@ prometheus:
 
     ## Service type
     ##
-    type: ClusterIP
+    type: NodePort
 
     ## Service dual stack
     ##
@@ -4698,7 +4698,7 @@ thanosRuler:
 
     ## Service type
     ##
-    type: ClusterIP
+    type: NodePort
 
   ## Configuration for creating a ServiceMonitor for the ThanosRuler service
   ##
