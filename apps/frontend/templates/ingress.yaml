@@ -22,7 +22,7 @@ spec:
           {{- range .paths }}
           - path: {{ .path }}
             pathType: {{ .pathType | default "Prefix" }}
-            frontend:
+            backend:
               service:
                 name: {{ $fullName }}
                 port:
