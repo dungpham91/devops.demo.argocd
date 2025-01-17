@@ -5,16 +5,16 @@ postgresql:
   persistence:
     enabled: true
     size: 10Gi
-    storageClass: gp3
+    storageClass: gp2
   replica:
     replicaCount: 1
   resources:
     requests:
-      memory: "1Gi"
-      cpu: "500m"
+      memory: 512Mi
+      cpu: 250m
     limits:
-      memory: "2Gi"
-      cpu: "1"
+      memory: 1Gi
+      cpu: 500m
   service:
     type: ClusterIP
     port: 5432
