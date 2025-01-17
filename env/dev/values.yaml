@@ -1,0 +1,26 @@
+---
+spec:
+  destination:
+    server: in-cluster
+  source:
+    repoURL: https://github.com/dungpham91/devops.demo.argocd
+    targetRevision: HEAD
+
+environment: dev
+project: dev
+
+syncPolicy:
+  syncOptions:
+    - CreateNamespace=true
+    - Validate=true
+    - ServerSideApply=true
+  automated:
+    selfHeal: true
+    prune: true
+    allowEmpty: true
+  retry:
+    limit: 5
+    backoff:
+      duration: 5s
+      factor: 2
+      maxDuration: 3m
