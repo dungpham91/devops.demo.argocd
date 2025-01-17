@@ -12,6 +12,7 @@ spec:
     chart: postgresql
     targetRevision: 16.4.3
     helm:
+      releaseName: postgresql-release
       values: |
         persistence:
           enabled: true
