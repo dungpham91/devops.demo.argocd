@@ -2,7 +2,7 @@ replicaCount: 2
 environment: dev
 
 image:
-  repository: 381492199798.dkr.ecr.us-east-1.amazonaws.com/devopslite-fe
+  repository: 952429021322.dkr.ecr.ap-southeast-1.amazonaws.com/devopslite-fe
   tag: "$IMAGE_TAG"
   pullPolicy: IfNotPresent
 
@@ -15,10 +15,10 @@ serviceAccount:
   create: true
   name: ""
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::381492199798:role/serviceaccount-role-dev
+    eks.amazonaws.com/role-arn: arn:aws:iam::952429021322:role/serviceaccount-role-dev
 
 secretStore:
-  region: us-east-1
+  region: ap-southeast-1
   create: true
   name: "secretstore-frontend-dev"
 
@@ -45,7 +45,7 @@ service:
 ingress:
   enabled: true
   frontendProtocol: HTTP
-  certificateArn: arn:aws:acm:us-east-1:381492199798:certificate/b59a5a65-fe4a-4acc-a8a1-7957627c641f
+  certificateArn: arn:aws:acm:ap-southeast-1:952429021322:certificate/eb93366d-2d7b-499c-b6f2-9b06243cad5d
   groupName: ingress
   groupOrder: "2"
   hosts:
