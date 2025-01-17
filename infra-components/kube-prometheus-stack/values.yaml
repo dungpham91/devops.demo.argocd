@@ -246,7 +246,7 @@ prometheus-windows-exporter:
   ##
   prometheus:
     monitor:
-      enabled: true
+      enabled: false
       jobLabel: jobLabel
 
   releaseLabel: true
@@ -423,11 +423,6 @@ alertmanager:
   ingress:
     enabled: true
     ingressClassName: alb
-
-    # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
-    # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-    # ingressClassName: nginx
-
     annotations:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: instance
@@ -435,6 +430,7 @@ alertmanager:
       alb.ingress.kubernetes.io/group.order: "4"
       alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-southeast-1:952429021322:certificate/eb93366d-2d7b-499c-b6f2-9b06243cad5d
       alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06
+      alb.ingress.kubernetes.io/healthcheck-path: "/-/healthy"
       alb.ingress.kubernetes.io/listen-ports: |
         [{"HTTP": 80}, {"HTTPS": 443}]
       alb.ingress.kubernetes.io/actions.redirect-to-https: >
