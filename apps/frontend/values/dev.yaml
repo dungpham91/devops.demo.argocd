@@ -1,0 +1,87 @@
+replicaCount: 2
+environment: dev
+
+image:
+  repository: 381492199798.dkr.ecr.us-east-1.amazonaws.com/devopslite-fe
+  tag: "$IMAGE_TAG"
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  name: ""
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::381492199798:role/serviceaccount-role-dev
+
+secretStore:
+  region: us-east-1
+  create: true
+  name: "secretstore-frontend-dev"
+
+externalSecret:
+  create: true
+  name: "externalsecret-frontend-dev"
+
+secret:
+  name: frontend
+
+configmap:
+  name: frontend
+  items:
+    PORT: 80
+
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  frontendProtocol: HTTP
+  certificateArn: arn:aws:acm:us-east-1:381492199798:certificate/b59a5a65-fe4a-4acc-a8a1-7957627c641f
+  groupName: ingress
+  groupOrder: "2"
+  hosts:
+    - host: app.dev.devopslite.com
+      paths:
+        - path: /
+          pathType: Prefix
+          frontend:
+            service:
+              name: frontend
+              port:
+                number: 80
+  tls: []
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 125Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+tolerations: []
+
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app: frontend
+        topologyKey: "kubernetes.io/hostname"
