@@ -1,38 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgres
+  name: postgresql
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: dev
   source:
-    repoURL: oci://registry-1.docker.io/bitnamicharts/postgresql
-    chart: postgresql
-    targetRevision: 16.4.3
+    repoURL: https://github.com/dungpham91/devops.demo.argocd
+    targetRevision: main
+    path: infra-components/postgresql
     helm:
-      releaseName: postgresql-release
-      values: |
-        persistence:
-          enabled: true
-          size: 10Gi
-          storageClass: gp3
-        replication:
-          enabled: false
-        service:
-          type: ClusterIP
-          port: 5432
-        resources:
-          requests:
-            memory: "1Gi"
-            cpu: "500m"
-          limits:
-            memory: "2Gi"
-            cpu: "1"
+      releaseName: postgresql
+      valueFiles:
+        - values.yaml
   destination:
     name: in-cluster
-    namespace: postgres
+    namespace: postgresql
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

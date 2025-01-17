@@ -1,0 +1,24 @@
+postgresql:
+  image:
+    repository: postgres
+    tag: 17.2.0
+  persistence:
+    enabled: true
+    size: 10Gi
+    storageClass: gp3
+  replica:
+    replicaCount: 1
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: "500m"
+    limits:
+      memory: "2Gi"
+      cpu: "1"
+  service:
+    type: ClusterIP
+    port: 5432
+
+serviceAccount:
+  enabled: true
+  name: postgresql-sa
