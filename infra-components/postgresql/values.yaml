@@ -22,3 +22,15 @@ postgresql:
 serviceAccount:
   enabled: false
   name: postgresql-sa
+
+secretStore:
+  region: ap-southeast-1
+  create: true
+  name: secretstore-postgresql-dev
+
+externalSecret:
+  create: true
+  name: externalsecret-postgresql-dev
+
+secret:
+  name: postgresql
