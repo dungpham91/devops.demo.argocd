@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: dev
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: postgresql
+    targetRevision: latest
+  destination:
+    server: in-cluster
+    namespace: postgres
+    helm:
+      values: |
+        persistence:
+          enabled: true
+          size: 10Gi
+          storageClass: gp3
+        replica:
+          replicaCount: 1
+        service:
+          type: ClusterIP
+          port: 5432
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1"
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - Validate=true
+      - ServerSideApply=true
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
