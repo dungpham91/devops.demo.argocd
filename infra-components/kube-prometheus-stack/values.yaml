@@ -456,7 +456,7 @@ alertmanager:
 
     ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
     ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types
-    # pathType: ImplementationSpecific
+    pathType: Prefix
 
     ## TLS configuration for Alertmanager Ingress
     ## Secret must be manually created in the namespace
@@ -1075,14 +1075,6 @@ grafana:
     ##
     enabled: true
     ingressClassName: alb
-
-    ## IngressClassName for Grafana Ingress.
-    ## Should be provided if Ingress is enable.
-    ##
-    # ingressClassName: nginx
-
-    ## Annotations for Grafana Ingress
-    ##
     annotations:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: instance
@@ -1120,13 +1112,13 @@ grafana:
 
   # # To make Grafana persistent (Using Statefulset)
   # #
-  # persistence:
-  #   enabled: true
-  #   type: sts
-  #   storageClassName: "storageClassName"
-  #   accessModes:
-  #     - ReadWriteOnce
-  #   size: 20Gi
+    persistence:
+      enabled: true
+      type: sts
+      storageClassName: "gp2"
+      accessModes:
+        - ReadWriteOnce
+      size: 10Gi
   #   finalizers:
   #     - kubernetes.io/pvc-protection
 
