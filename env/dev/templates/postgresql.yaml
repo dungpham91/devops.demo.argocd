@@ -12,7 +12,7 @@ spec:
     chart: postgresql
     targetRevision: latest
   destination:
-    server: in-cluster
+    cluster: in-cluster
     namespace: postgres
     helm:
       values: |
