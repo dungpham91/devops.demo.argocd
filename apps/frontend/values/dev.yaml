@@ -15,16 +15,16 @@ serviceAccount:
   create: true
   name: ""
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::952429021322:role/serviceaccount-role-dev
+    eks.amazonaws.com/role-arn: arn:aws:iam::952429021322:role/devopslite_dev_eks_cluster_postgresql_sa_role
 
 secretStore:
   region: ap-southeast-1
   create: true
-  name: "secretstore-frontend-dev"
+  name: "secretstore-frontend"
 
 externalSecret:
   create: true
-  name: "externalsecret-frontend-dev"
+  name: "externalsecret-frontend"
 
 secret:
   name: frontend

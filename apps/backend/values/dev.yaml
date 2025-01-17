@@ -15,16 +15,16 @@ serviceAccount:
   create: true
   name: ""
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::952429021322:role/serviceaccount-role-dev
+    eks.amazonaws.com/role-arn: arn:aws:iam::952429021322:role/devopslite_dev_eks_cluster_postgresql_sa_role
 
 secretStore:
   region: ap-southeast-1
   create: true
-  name: "secretstore-backend-dev"
+  name: "secretstore-backend"
 
 externalSecret:
   create: true
-  name: "externalsecret-backend-dev"
+  name: "externalsecret-backend"
 
 secret:
   name: backend
@@ -47,7 +47,7 @@ ingress:
   backendProtocol: HTTP
   certificateArn: arn:aws:acm:ap-southeast-1:952429021322:certificate/eb93366d-2d7b-499c-b6f2-9b06243cad5d
   groupName: ingress
-  groupOrder: "2"
+  groupOrder: "3"
   hosts:
     - host: api.dev.devopslite.com
       paths:
